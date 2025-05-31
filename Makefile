@@ -22,6 +22,7 @@ SRC = main.c \
 	  read_file.c \
 	  read_file_utils.c \
 	  error.c \
+	  draw.c \
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 
@@ -31,7 +32,7 @@ all: $(NAME)
 
 $(NAME): $(SRCS)
 	make -C libft
-	$(CC) $(CFLAGS) $(INCS) -o $@ $^ -L libft -lft 
+	$(CC) $(CFLAGS) $(INCS) -o $@ $^ -L libft -lft -L mlx -lmlx -lXext -lX11
 
 clean:
 	make -C libft clean

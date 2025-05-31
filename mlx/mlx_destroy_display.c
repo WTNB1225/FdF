@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mlx_destroy_display.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyuki <wyuki@student.42tokyo.jp>           +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/29 08:37:25 by wyuki             #+#    #+#             */
-/*   Updated: 2025/05/30 00:09:39 by wyuki            ###   ########.fr       */
+/*   Created: 2020/10/03 18:56:35 by mg                #+#    #+#             */
+/*   Updated: 2020/10/04 01:55:35 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "mlx_int.h"
 
-int main(int argc, char **argv)
+int	mlx_destroy_display(t_xvar *xvar)
 {
-	t_map	map;
-
-	if (argc != 2)
-		exit_error("Invalid arguments", false);
-	read_file(argv[1], &map);
-	init_mlx(&map);
-	free(map.alt);
-	return (0);
+	XCloseDisplay(xvar->display);
 }
