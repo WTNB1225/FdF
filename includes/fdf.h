@@ -19,10 +19,15 @@
 # include "../mlx/mlx.h"
 # include "../libft/libft.h"
 
+# define WINDOW_WIDTH 1920
+# define WINDOW_HEIGHT 1080
+
 typedef struct s_map
 {
 	size_t	height;
 	size_t	width;
+	int		*coord_x;
+	int		*coord_y;
 	int		*alt;
 }	t_map;
 
@@ -39,6 +44,11 @@ size_t	get_height(const char *filename);
 size_t	get_width(const char *filename);
 int		*get_altitude(const char *filename, t_map *map);
 void	read_file(const char *filename, t_map *map);
+
+double	get_rad(int degree);
+
+void	isometric(t_map *map);
+
 void	exit_error(char *msg, bool is_syscall);
-void    init_mlx(t_map *map);
+void	init_mlx(t_map *map);
 #endif

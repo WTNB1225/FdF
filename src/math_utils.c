@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wyuki <wyuki@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/29 08:37:25 by wyuki             #+#    #+#             */
-/*   Updated: 2025/05/30 00:09:39 by wyuki            ###   ########.fr       */
+/*   Created: 2025/06/02 20:02:05 by wyuki             #+#    #+#             */
+/*   Updated: 2025/06/02 20:02:06 by wyuki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int main(int argc, char **argv)
+double	get_rad(int degree)
 {
-	t_map	map;
+	double	rad;
 
-	if (argc != 2)
-		exit_error("Invalid arguments", false);
-	read_file(argv[1], &map);
-	isometric(&map);
-	init_mlx(&map);
-	free(map.alt);
-	return (0);
+	rad = degree * M_PI / 180;
+	return (rad);
 }

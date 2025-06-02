@@ -23,6 +23,8 @@ SRC = main.c \
 	  read_file_utils.c \
 	  error.c \
 	  draw.c \
+	  isometric.c \
+	  math_utils.c \
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 
