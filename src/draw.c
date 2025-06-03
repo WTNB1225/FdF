@@ -6,7 +6,7 @@
 /*   By: wyuki <wyuki@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 09:25:28 by wyuki             #+#    #+#             */
-/*   Updated: 2025/06/04 00:40:19 by wyuki            ###   ########.fr       */
+/*   Updated: 2025/06/04 02:17:26 by wyuki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	draw(t_data *data, t_map *map, int color)
 	size_t	i;
 	size_t	j;
 	size_t	idx;
+	size_t	down;
 
 	j = 0;
 	while (j < map->height)
@@ -70,12 +71,18 @@ void	draw(t_data *data, t_map *map, int color)
 		i = 0;
 		while (i < map->width)
 		{
-			idx = map->height * j + i;
-
+			idx = map->width * j + i;
+			down = map->width * (j + 1) + i;
 			if (i < map->width - 1)
-				draw_line(map->coord_x[idx], map->coord_y[idx], map->coord_x[idx + 1], map->coord_y[idx + 1], data, color);
+			{
+				draw_line(map->coord_x[idx], map->coord_y[idx],
+			  	map->coord_x[idx + 1], map->coord_y[idx + 1], data, color);
+			}
 			if (j < map->height - 1)
-				draw_line(map->coord_x[idx], map->coord_y[idx], map->coord_x[map->height * (j + 1) + i], map->coord_y[map->height * (j + 1) + i], data, color);
+			{
+				draw_line(map->coord_x[idx], map->coord_y[idx],
+			  	map->coord_x[down], map->coord_y[down], data, color);
+			}
 			i++;
 		}
 		j++;

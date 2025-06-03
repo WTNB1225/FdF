@@ -6,7 +6,7 @@
 #    By: wyuki <wyuki@student.42tokyo.jp>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/29 03:34:20 by wyuki             #+#    #+#              #
-#    Updated: 2025/06/03 20:20:23 by wyuki            ###   ########.fr        #
+#    Updated: 2025/06/04 02:23:15 by wyuki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC = main.c \
 	  draw.c \
 	  isometric.c \
 	  math_utils.c \
+	  map_utils.c \
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 
