@@ -6,7 +6,7 @@
 /*   By: wyuki <wyuki@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 03:36:27 by wyuki             #+#    #+#             */
-/*   Updated: 2025/05/29 23:59:04 by wyuki            ###   ########.fr       */
+/*   Updated: 2025/06/04 00:17:02 by wyuki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ void	read_file(const char *filename, t_map *map);
 
 double	get_rad(int degree);
 
-void	isometric(t_map *map);
+void	isometric(t_map *map, int *min_widht, int *max_width, int *min_height,
+			   int *max_height);
+int		get_tile_size(t_map *map, int min_width, int max_width, int min_height, int max_height);
 
 void	exit_error(char *msg, bool is_syscall);
 void	init_mlx(t_map *map);

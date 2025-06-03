@@ -6,7 +6,7 @@
 #    By: wyuki <wyuki@student.42tokyo.jp>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/29 03:34:20 by wyuki             #+#    #+#              #
-#    Updated: 2025/05/30 00:01:22 by wyuki            ###   ########.fr        #
+#    Updated: 2025/06/03 20:20:23 by wyuki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ all: $(NAME)
 
 $(NAME): $(SRCS)
 	make -C libft
-	$(CC) $(CFLAGS) $(INCS) -o $@ $^ -L libft -lft -L mlx -lmlx -lXext -lX11
+	$(CC) $(CFLAGS) $(INCS) -o $@ $^ -L libft -lft -L mlx -lmlx -lXext -lX11 -lm
 
 clean:
 	make -C libft clean

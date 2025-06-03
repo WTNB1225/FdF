@@ -6,7 +6,7 @@
 /*   By: wyuki <wyuki@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 09:25:28 by wyuki             #+#    #+#             */
-/*   Updated: 2025/06/02 21:09:20 by wyuki            ###   ########.fr       */
+/*   Updated: 2025/06/04 00:40:19 by wyuki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,42 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+void	draw_line(int x0, int y0, int x1, int y1, t_data *data, int color)
+{
+	int	sx;
+	int	sy;
+	int	dx;
+	int	dy;
+	long long	err;
+
+	dx = abs(x1 - x0);
+	dy = abs(y1 - y0);
+	sx = -1;
+	sy = -1;
+	err = dx - dy;
+	if (x0 < x1)
+		sx = 1;
+	if (y0 < y1)
+		sy = 1;
+	while (1)
+	{
+		my_mlx_pixel_put(data, x0, y0, color);
+		if (x0 == x1 && y0 == y1)
+			break;
+		int err2 = err * 2;
+		if (err2 > -dy)
+		{
+			err -= dy;
+			x0 += sx;
+		}
+		if (err2 < dx)
+		{
+			err += dx;
+			y0 += sy;
+		}
+	}
+}
+
 void	draw(t_data *data, t_map *map, int color)
 {
 	size_t	i;
@@ -35,8 +71,11 @@ void	draw(t_data *data, t_map *map, int color)
 		while (i < map->width)
 		{
 			idx = map->height * j + i;
-			ft_printf("[x: %d, y: %d]\n", map->coord_x[idx], map->coord_y[idx]);
-			my_mlx_pixel_put(data, map->coord_x[idx], map->coord_y[idx], color);
+
+			if (i < map->width - 1)
+				draw_line(map->coord_x[idx], map->coord_y[idx], map->coord_x[idx + 1], map->coord_y[idx + 1], data, color);
+			if (j < map->height - 1)
+				draw_line(map->coord_x[idx], map->coord_y[idx], map->coord_x[map->height * (j + 1) + i], map->coord_y[map->height * (j + 1) + i], data, color);
 			i++;
 		}
 		j++;
