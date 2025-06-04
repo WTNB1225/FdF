@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wyuki <wyuki@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/31 09:25:28 by wyuki             #+#    #+#             */
-/*   Updated: 2025/06/04 02:17:26 by wyuki            ###   ########.fr       */
+/*   Created: 2025/06/04 15:27:55 by wyuki             #+#    #+#             */
+/*   Updated: 2025/06/04 15:38:50 by wyuki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,11 @@ void	init_mlx(t_map *map)
 	t_data	img;
 
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, WINDOW_WIDTH, WINDOW_WIDTH, "fdf");
+	mlx_win = mlx_new_window(mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "fdf");
 	img.img = mlx_new_image(mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.size_line,
 			&img.endian);
-	draw(&img, map, 0x00FF0000);
+	draw(&img, map, 0xFFFFFFFF);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
 }

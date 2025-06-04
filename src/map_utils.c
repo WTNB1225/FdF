@@ -6,7 +6,7 @@
 /*   By: wyuki <wyuki@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 01:49:28 by wyuki             #+#    #+#             */
-/*   Updated: 2025/06/04 02:46:36 by wyuki            ###   ########.fr       */
+/*   Updated: 2025/06/04 16:40:09 by wyuki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int get_tile_size(t_map *map)
 	int	tile_size_by_width;
 	int	tile_size_by_height;
 
-	tile_size_by_width = WINDOW_WIDTH / map->width;
-	tile_size_by_height = WINDOW_HEIGHT / map->height;
+	tile_size_by_width = WINDOW_WIDTH / (map->max_width - map->min_width);
+	tile_size_by_height = WINDOW_HEIGHT / (map->max_height - map->min_height);
 
 	if (tile_size_by_width < tile_size_by_height)
 		return (tile_size_by_width);

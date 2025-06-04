@@ -6,15 +6,15 @@
 /*   By: wyuki <wyuki@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 20:02:05 by wyuki             #+#    #+#             */
-/*   Updated: 2025/06/02 20:02:06 by wyuki            ###   ########.fr       */
+/*   Updated: 2025/06/04 16:21:53 by wyuki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-double	get_rad(int degree)
+float	get_rad(int degree)
 {
-	double	rad;
+	float	rad;
 
 	rad = degree * M_PI / 180;
 	return (rad);

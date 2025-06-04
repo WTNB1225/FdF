@@ -6,7 +6,7 @@
 /*   By: wyuki <wyuki@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 03:36:27 by wyuki             #+#    #+#             */
-/*   Updated: 2025/06/04 02:22:35 by wyuki            ###   ########.fr       */
+/*   Updated: 2025/06/04 16:21:23 by wyuki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ typedef struct s_map
 {
 	size_t	height;
 	size_t	width;
-	int		*coord_x;
-	int		*coord_y;
+	float		*coord_x;
+	float		*coord_y;
 	int		*alt;
 	int		min_width;
 	int		max_width;
@@ -49,7 +49,7 @@ size_t	get_width(const char *filename);
 int		*get_altitude(const char *filename, t_map *map);
 void	read_file(const char *filename, t_map *map);
 
-double	get_rad(int degree);
+float	get_rad(int degree);
 
 void	set_coord(t_map *map);
 void	set_max(t_map *map);
