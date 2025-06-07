@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file.c                                        :+:      :+:    :+:   */
+/*   keyhook.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wyuki <wyuki@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/29 03:51:47 by wyuki             #+#    #+#             */
-/*   Updated: 2025/06/06 19:13:39 by wyuki            ###   ########.fr       */
+/*   Created: 2025/06/06 19:03:41 by wyuki             #+#    #+#             */
+/*   Updated: 2025/06/06 19:05:03 by wyuki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	read_file(const char *filename, t_map *map)
+int	on_esc(int keycode, t_vars *vars)
 {
-	map->height = get_height(filename);
-	map->width = get_width(filename);
-	map->alt = get_altitude(filename, map);
-	read_color(filename, map);
+	ft_printf("hogehoge\n");
+	return (0);
 }

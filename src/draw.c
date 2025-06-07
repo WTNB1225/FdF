@@ -6,13 +6,13 @@
 /*   By: wyuki <wyuki@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 15:27:55 by wyuki             #+#    #+#             */
-/*   Updated: 2025/06/04 15:38:50 by wyuki            ###   ########.fr       */
+/*   Updated: 2025/06/06 19:35:57 by wyuki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
@@ -22,13 +22,13 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	draw_line(int x0, int y0, int x1, int y1, t_data *data, int color)
+void	draw_line(int x0, int y0, int x1, int y1, t_data *data)
 {
 	int	sx;
 	int	sy;
 	int	dx;
 	int	dy;
-	long long	err;
+	int	err;
 
 	dx = abs(x1 - x0);
 	dy = abs(y1 - y0);
@@ -41,7 +41,7 @@ void	draw_line(int x0, int y0, int x1, int y1, t_data *data, int color)
 		sy = 1;
 	while (1)
 	{
-		my_mlx_pixel_put(data, x0, y0, color);
+		pixel_put(data, x0, y0, 0XFFFFFFFF);
 		if (x0 == x1 && y0 == y1)
 			break;
 		int err2 = err * 2;
@@ -58,7 +58,7 @@ void	draw_line(int x0, int y0, int x1, int y1, t_data *data, int color)
 	}
 }
 
-void	draw(t_data *data, t_map *map, int color)
+void	draw(t_data *data, t_map *map)
 {
 	size_t	i;
 	size_t	j;
@@ -76,12 +76,12 @@ void	draw(t_data *data, t_map *map, int color)
 			if (i < map->width - 1)
 			{
 				draw_line(map->coord_x[idx], map->coord_y[idx],
-			  	map->coord_x[idx + 1], map->coord_y[idx + 1], data, color);
+			  	map->coord_x[idx + 1], map->coord_y[idx + 1], data);
 			}
 			if (j < map->height - 1)
 			{
 				draw_line(map->coord_x[idx], map->coord_y[idx],
-			  	map->coord_x[down], map->coord_y[down], data, color);
+			  	map->coord_x[down], map->coord_y[down], data);
 			}
 			i++;
 		}
@@ -101,7 +101,7 @@ void	init_mlx(t_map *map)
 	img.img = mlx_new_image(mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.size_line,
 			&img.endian);
-	draw(&img, map, 0xFFFFFFFF);
+	draw(&img, map);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
 }

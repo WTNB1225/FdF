@@ -6,7 +6,7 @@
 /*   By: wyuki <wyuki@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 03:36:27 by wyuki             #+#    #+#             */
-/*   Updated: 2025/06/04 16:21:23 by wyuki            ###   ########.fr       */
+/*   Updated: 2025/06/06 19:15:19 by wyuki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,14 @@ typedef struct s_map
 {
 	size_t	height;
 	size_t	width;
-	float		*coord_x;
-	float		*coord_y;
+	float	*coord_x;
+	float	*coord_y;
 	int		*alt;
 	int		min_width;
 	int		max_width;
 	int		min_height;
 	int		max_height;
+	int		*color;
 }	t_map;
 
 typedef struct s_data
@@ -44,10 +45,17 @@ typedef struct s_data
 	int		endian;
 }	t_data;
 
+typedef struct s_vars
+{
+	void	*mlx;
+	void	*win;
+}	t_vars;
+
 size_t	get_height(const char *filename);
 size_t	get_width(const char *filename);
 int		*get_altitude(const char *filename, t_map *map);
 void	read_file(const char *filename, t_map *map);
+void	read_color(char *filename, t_map *map);
 
 float	get_rad(int degree);
 
@@ -55,6 +63,7 @@ void	set_coord(t_map *map);
 void	set_max(t_map *map);
 void	isometric(t_map *map);
 int		get_tile_size(t_map *map);
+int		on_esc(int keycode, t_vars *vars);
 
 void	exit_error(char *msg, bool is_syscall);
 void	init_mlx(t_map *map);
