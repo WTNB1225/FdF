@@ -6,7 +6,7 @@
 /*   By: wyuki <wyuki@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 01:49:25 by wyuki             #+#    #+#             */
-/*   Updated: 2025/06/06 19:35:46 by wyuki            ###   ########.fr       */
+/*   Updated: 2025/06/07 19:06:43 by wyuki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static unsigned int	*read_color(char *line, unsigned int *color)
 	{
 		ptr = ft_strchr(split[i], ',');
 		if (!ptr)
-			color[i] = 0XFFFFFFFF;
+			color[i] = 0XFFFFFF;
 		else
 			color[i] = hex_to_int(ptr);
 		i++;

@@ -6,7 +6,7 @@
 /*   By: wyuki <wyuki@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 15:27:55 by wyuki             #+#    #+#             */
-/*   Updated: 2025/06/06 19:35:57 by wyuki            ###   ########.fr       */
+/*   Updated: 2025/06/07 19:02:43 by wyuki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	pixel_put(t_data *data, int x, int y, int color)
 	dst = data->addr + (y * data->size_line + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
+
+#include <stdint.h>
 
 void	draw_line(int x0, int y0, int x1, int y1, t_data *data, unsigned int color)
 {
@@ -39,9 +41,13 @@ void	draw_line(int x0, int y0, int x1, int y1, t_data *data, unsigned int color)
 		sx = 1;
 	if (y0 < y1)
 		sy = 1;
+	unsigned int red = (color >> 16) & 0xFF;
+	color ^= red << 16;
 	while (1)
 	{
-		pixel_put(data, x0, y0, color);
+		red = (red - 1) & 0xFF;
+		pixel_put(data, x0, y0, color | (red << 16));
+		ft_printf("%x\n", color | (red << 16));
 		if (x0 == x1 && y0 == y1)
 			break;
 		int err2 = err * 2;
