@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+size_t	gnl_strlen(const char *s)
 {
 	size_t	i;
 
@@ -22,22 +22,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strchr(const char *s, int c)
-{
-	if (s == NULL)
-		return (NULL);
-	while (*s)
-	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
-	}
-	if (*s == (char)c)
-		return ((char *)s);
-	return (NULL);
-}
-
-char	*ft_strjoin(char *s1, char const *s2)
+char	*gnl_strjoin(char *s1, char const *s2)
 {
 	char	*ptr;
 	size_t	i;
@@ -50,7 +35,7 @@ char	*ft_strjoin(char *s1, char const *s2)
 			return (NULL);
 		s1[0] = '\0';
 	}
-	ptr = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	ptr = (char *)malloc(sizeof(char) * (gnl_strlen(s1) + gnl_strlen(s2) + 1));
 	i = 0;
 	j = 0;
 	if (ptr == NULL)
@@ -66,7 +51,7 @@ char	*ft_strjoin(char *s1, char const *s2)
 	return (free((void *)s1), ptr);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*gnl_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*ptr;
 	size_t	s_len;
@@ -75,8 +60,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	if (s == NULL)
 		return (NULL);
-	s_len = ft_strlen(s);
-	s_start = ft_strlen(s + start);
+	s_len = gnl_strlen(s);
+	s_start = gnl_strlen(s + start);
 	if (start >= s_len)
 		len = 0;
 	else if (s_start < len)

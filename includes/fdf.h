@@ -33,7 +33,7 @@ typedef struct s_map
 	int		max_width;
 	int		min_height;
 	int		max_height;
-	int		*color;
+	unsigned int	*color;
 }	t_map;
 
 typedef struct s_data
@@ -55,7 +55,7 @@ size_t	get_height(const char *filename);
 size_t	get_width(const char *filename);
 int		*get_altitude(const char *filename, t_map *map);
 void	read_file(const char *filename, t_map *map);
-void	read_color(char *filename, t_map *map);
+unsigned int		*get_color(const char *filename, t_map *map);
 
 float	get_rad(int degree);
 
@@ -66,5 +66,7 @@ int		get_tile_size(t_map *map);
 int		on_esc(int keycode, t_vars *vars);
 
 void	exit_error(char *msg, bool is_syscall);
-void	init_mlx(t_map *map);
+void	init_mlx(t_vars *vars);
+
+void	draw(t_data *data, t_map *map);
 #endif

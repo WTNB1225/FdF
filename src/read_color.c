@@ -19,12 +19,11 @@ static int	ft_isspace(char c)
 	return (0);
 }
 
-static int	hex_to_int(char *hex)
+static unsigned int	hex_to_int(char *hex)
 {
 	char	*hex_table;
 	int		sum;
-	int		i;
-	
+	unsigned int		i;
 
 	hex_table = "0123456789ABCDEF";
 	sum = 0;
@@ -37,7 +36,7 @@ static int	hex_to_int(char *hex)
 		while (hex_table[i])
 		{
 			if (hex_table[i] == *hex)
-				break;
+				break ;
 			i++;
 		}
 		sum = (sum * 16) + i;
@@ -46,7 +45,7 @@ static int	hex_to_int(char *hex)
 	return (sum);
 }
 
-static void	set_color(char *line, int *color, t_map *map)
+static unsigned int	*read_color(char *line, unsigned int *color)
 {
 	size_t	i;
 	char	**split;
@@ -59,35 +58,41 @@ static void	set_color(char *line, int *color, t_map *map)
 	while (split[i])
 	{
 		ptr = ft_strchr(split[i], ',');
-		if (ptr)
-			color[i] = hex_to_int(ptr);
-		else
+		if (!ptr)
 			color[i] = 0XFFFFFFFF;
+		else
+			color[i] = hex_to_int(ptr);
 		i++;
 	}
 	free(split);
-	free(ptr);
 	return (color);
 }
 
-void	read_color(char *filename, t_map *map)
+unsigned int	*get_color(const char *filename, t_map *map)
 {
-	int	fd;
-	int	*color;
+	int		fd;
+	unsigned int	*color;
+	unsigned int	*color_line;
 	char	*line;
+	size_t	i;
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		exit_error(NULL, true);
-	color = (int *)malloc(sizeof(int) * (map->width * map->height));
+	color = (unsigned int *)malloc(sizeof(unsigned int) * (map->width * map->height));
+	i = 0;
 	if (!color)
 		exit_error("Failed to read the map", false);
 	line = get_next_line(fd);
 	while (line)
 	{
-		set_color(line, color, map);
+		color_line = read_color(line, color);
+		ft_memcpy((color + (i * map->width)), color_line, sizeof(unsigned int) * map->width);
+		free(line);
 		line = get_next_line(fd);
+		i++;
 	}
 	if (close(fd) == -1)
 		exit_error(NULL, true);
+	return (color);
 }

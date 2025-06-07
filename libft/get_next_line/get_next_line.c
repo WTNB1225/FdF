@@ -22,7 +22,7 @@ static char	*extract_line(char *backup)
 	i = 0;
 	while (backup[i] != '\n' && backup[i])
 		i++;
-	line = ft_substr(backup, 0, i);
+	line = gnl_substr(backup, 0, i);
 	return (line);
 }
 
@@ -35,12 +35,12 @@ static char	*make_new_backup(char *backup)
 	if (backup == NULL)
 		return (NULL);
 	i = 0;
-	len = ft_strlen(backup);
+	len = gnl_strlen(backup);
 	while (backup[i] && backup[i] != '\n')
 		i++;
 	if (backup[i] == '\n')
 		i++;
-	new_backup = ft_substr(backup, i, len - i);
+	new_backup = gnl_substr(backup, i, len - i);
 	free(backup);
 	return (new_backup);
 }
@@ -67,7 +67,7 @@ static char	*read_file(int fd, char *backup)
 			return (NULL);
 		}
 		buf[read_rtn] = '\0';
-		backup = ft_strjoin(backup, buf);
+		backup = gnl_strjoin(backup, buf);
 	}
 	free(buf);
 	return (backup);
